@@ -1,2 +1,3 @@
 # Stm32CppUtils
-Utils for stm32 in CPP
+Blackpill's STM32 utility library
+The code is written in C++

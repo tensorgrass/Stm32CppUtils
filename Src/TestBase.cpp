@@ -8,7 +8,7 @@ TestBase::TestBase(ControllerBase* controllerBaseValue) :
   timer11Delay(controllerBaseValue->getTimer11Delay()),
   servo_right(controllerBaseValue->getServoRight()),
   servo_left(controllerBaseValue->getServoLeft()),
-  servo_center(controllerBaseValue->getServoCenter()) {
+  servo_distance(controllerBaseValue->getServoDistance()) {
   // Aquí podrías inicializar otros miembros si es necesario
   // Constructor de TestBase, inicializa el controlador y los objetos UART
 }

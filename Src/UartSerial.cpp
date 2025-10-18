@@ -10,6 +10,7 @@
 
 UartSerial::UartSerial(UART_HandleTypeDef *huart, std::string menu, std::vector<std::string>* optionsValue) : UartBase(huart), menu_string(menu), option_list(optionsValue) {
   buffer_string.reserve(4096);
+  buffer_string.append("\r\n---\r\n");
   HAL_UART_Receive_IT(huart, &rxData, 1);
 }
 
@@ -81,10 +82,17 @@ void UartSerial::bufferln(std::string string_to_send) {
 
 void UartSerial::printBuffer() {
   if (!buffer_string.empty()) {
-    buffer_string.append("\r\n---\r\n");
-    buffer_string = "\r\n---\r\n" + buffer_string; // Agrega un encabezado al búfer
-    HAL_UART_Transmit(uartHandler, reinterpret_cast<const unsigned char*>(buffer_string.data()), buffer_string.size(), HAL_MAX_DELAY);
-    buffer_string = "";
+    buffer_string.append("\r\n--fin--\r\n");
+//    buffer_string = "\r\n---\r\n" + buffer_string; // Agrega un encabezado al búfer
+    if (HAL_UART_Transmit(uartHandler, reinterpret_cast<const unsigned char*>(buffer_string.data()), buffer_string.size(), HAL_MAX_DELAY) == HAL_OK) {
+      buffer_string.clear();
+      buffer_string.append("\r\n--ok--\r\n");
+    }
+    else {
+      buffer_string.clear();
+      buffer_string.append("\r\n--error--\r\n");
+    }
+
   }
 }
 

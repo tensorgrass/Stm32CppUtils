@@ -29,11 +29,13 @@ public:
     MotorOneShot125(TIM_HandleTypeDef* htim_value, unsigned int channel_value, __IO uint32_t* channel_address_value);
     uint32_t map_esc_values(uint32_t au32_IN, uint32_t au32_INmin, uint32_t au32_INmax, uint32_t au32_OUTmin, uint32_t au32_OUTmax);
     void setSpeed(uint32_t motor_speed_value);
+    void disable();
 private:
     TIM_HandleTypeDef* htim;
     unsigned int channel;
     __IO uint32_t* channel_address;
     uint32_t motor_speed;
+    uint32_t channel_address_disable;
 };
 
 

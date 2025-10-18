@@ -28,7 +28,7 @@ void UartComm::sendData(StructMessage* message){
 
 
   uartSerial->buffer("Send:");
-  uartSerial->bufferln(std::string(reinterpret_cast<char*>(tx_buffer), TX_BUFFER_SIZE));
+  uartSerial->buffer(std::string(reinterpret_cast<char*>(tx_buffer), TX_BUFFER_SIZE));
 
   // Enviar el primer mensaje (bloqueante para asegurar que salga primero)
 //  HAL_UART_Transmit(uartHandler, tx_buffer, TX_BUFFER_SIZE, HAL_MAX_DELAY);

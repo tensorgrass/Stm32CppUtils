@@ -13,12 +13,12 @@
 
 class Servo {
 public:
-  Servo(TIM_HandleTypeDef *timer_handle, uint32_t channel);
+  Servo(TIM_HandleTypeDef *htim_value, uint32_t channel_value);
   ~Servo() = default;
 
   void setPosition(uint16_t angle);
 protected:
-  TIM_HandleTypeDef *timer_handle;
+  TIM_HandleTypeDef *htim;
   uint32_t channel;
 };
 
